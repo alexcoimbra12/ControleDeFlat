@@ -1,0 +1,13 @@
+{
+  "name": "angular",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "alexcoimbra12"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.5.6"
+  }
+}
