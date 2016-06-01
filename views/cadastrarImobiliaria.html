@@ -3,11 +3,11 @@
 <head>
 	<title></title>
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 
 	<!-- JS -->
-	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
  	<!-- Navigation Bar - Begin-->
@@ -28,14 +28,43 @@
       	<div class="collapse navbar-collapse" id="bar1">
       		<ul class="nav navbar-nav">
               <li><a href="../index.html">Home</a></li>
-              <li><a href="hospede.html">H&oacutespedes</a></li>
+              <li><a href="hospede.html">H&oacute;spedes</a></li>
               <li class="active"><a href="imobiliaria.html">Imobiliaria</a></li>
       		</ul>
     	</div>
-    </nav> 
-    <!-- Navigation Bar - End-->
+  </nav> 
+  <!-- Navigation Bar - End-->
+
+  <div class="container">
+    <div class="row">
+      <div class="panel panel-info">
+          <div class="panel-heading" align="center">Cadastro de Novas Imobili&aacute;rias</div>
+          <div class="panel-body">
+            <form>
+              <label>Nome</label><br>
+              <input type="text" id="nome" class="form-control"></input>
+              <br>
+              <label>Endere&ccedil;o</label><br>
+              <input type="text" id="endereco" class="form-control"></input>
+              <br>
+              <label>Telefone para Contato</label><br>
+              <input type="text" id="telefone" class="form-control"></input>
+              <br>
+              <label>Nome do Corretor</label><br>
+              <input type="text" id="nomeCorretor" class="form-control"></input>
+              <br>
+              <label>Numero do Creci</label><br>
+              <input type="text" id="numCreci" class="form-control"></input>
+              <br><br>
+              <button type="button" class="btn btn-primary">Cadastrar</button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Navigation Bar Footer - Begin -->
+  <nav class="navbar navbar-default"></nav>
   <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
     <div class="container">
       <div class="navbar-text pull-left">
