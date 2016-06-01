@@ -12,11 +12,12 @@
 	<script type="text/javascript" src="js/controllers/hospedeController.js"></script>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	
 	<!-- Navigation Bar - Begin-->
- 	<nav class="navbar navbar-inverse" role="navigation">
+ 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 
     	<div class="navbar-header">
         
@@ -33,43 +34,34 @@
       	<div class="collapse navbar-collapse" id="bar1">
       		<ul class="nav navbar-nav">
               <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="views/hospede.html">H&oacutespedes</a></li>
+              <li><a href="views/hospede.html">H&oacute;spedes</a></li>
               <li><a href="views/imobiliaria.html">Imobiliarias</a></li>
       		</ul>
     	</div>
     </nav> 
     <!-- Navigation Bar - End-->
 
-
-
-	<div ng-controller="hospedeController">
-	
-		<button type="button" class="btn btn-default" ng-click="list()">Verificar Hospedes</button>
-		<br><br>
-
-		<table class="table">
-			<tr>
-				<th>Nome</th>
-				<th>CPF</th>
-				<th>Telefone</th>
-			</tr>
-			<tr ng-repeat="hospede in hospedes">
-				<td>{{hospede.nome}}</td>
-				<td>{{hospede.cpf}}</td>
-				<td>{{hospede.telefone}}</td>
-			</tr>
-		</table>
+	<div class="jumbotron">
+		<div class="container" align="center">
+			<h1>Bem Vindo ao Sistema de Controle de Flat</h1>
+			<p>Cadastre, Altere e Vizualize seus H&oacute;spedes, Imobiliaras e Apartamentos</p>
+		</div>
 	</div>
 
+	<div class="col-md-12" align="center">
+    		<a class="img-rounded">
+      			<img src="img/download.jpg" alt="teste">
+    		</a><br><br>
+    		<div class="caption">
+    			<label>Hotel, Flat, Condominio</label>
+    		</div>
+    	</div>
+
 	<!-- Navigation Bar Footer - Begin -->
-	<nav class="navbar navbar-default "></nav>
 	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
 		<div class="container">
-			<div class="navbar-text pull-left">
-				<p>Sistema de Controle de Flat</p>
-			</div>
 			<div class="navbar-text pull-right">
-				<p>Development by <a href="#">alexcoimbra12</a></p>
+				<p>Sistema de Controle de Flat - Development by <a href="#">alexcoimbra12</a></p>
 			</div>
 		</div>
 	</div>

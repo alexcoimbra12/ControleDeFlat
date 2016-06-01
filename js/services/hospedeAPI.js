@@ -10,10 +10,14 @@
 	
 	function hospedeAPI($http) {
 		var _list = function(){
-			return $http.get('http://localhost:8080/WsFlat/ws/allHospedes');
+			return $http.get('http://localhost:8080/FlatWS/hospede/getHospedes');
 		};
 		return {
 			list:_list
+		}
+
+		var _save = function(){
+
 		}
 	}
 })()

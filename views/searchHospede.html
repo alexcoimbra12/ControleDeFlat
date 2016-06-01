@@ -39,34 +39,45 @@
     	</div>
     </nav> 
     <!-- Navigation Bar - End-->
+   	
+   	<div ng-controller="hospedeController">
+   	<!-- Search input - Begin -->
+	   	<div class="row" >
+			<div class="container">
+			  	<div class="col-lg-12">
+			       	<div class="input-group">
+			      		<input type="text" class="form-control" placeholder="Digite o nome do H&oacute;spede">
+			      		<span class="input-group-btn">
+			        		<button class="btn btn-default" type="button" ng-click="list()" onclick="showDiv();">Buscar</button>
+			     		</span>
+			    	</div>
+			  	</div>
+			</div>
+		</div>
+		<!-- Search input - End -->
 
-
-    <!-- Tabele with data of request WebService - Begin-->
-	<div ng-controller="hospedeController">
-	
-		<button type="button" class="btn btn-default" ng-click="list()">Verificar Hospedes</button>
-		<br><br>
-		<div class="container">
-			<table class="table">
-				<tr>
-					<th>Nome</th>
-					<th>CPF</th>
-					<th>Telefone</th>
-					<th>A&ccedil;&atilde;o</th>
-				</tr>
-				<tr ng-repeat="hospede in hospedes">
-					<td>{{hospede.nome}}</td>
-					<td>{{hospede.cpf}}</td>
-					<td>{{hospede.telefone}}</td>
-					<td>
-						<button type="button" class="btn btn-warning">Editar</button>
-						<button type="button" class="btn btn-danger">Deletar</button>
-					</td>
-				</tr>
-			</table>
+		<div  class="col-lg-12" align="center">
+			<div class="container" id="divResult" style="display: none;">
+				<table class="table">
+					<tr>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th>Telefone</th>
+						<th>A&ccedil;&atilde;o</th>
+					</tr>
+					<tr ng-repeat="hospede in hospedes">
+						<td>{{hospede.nome}}</td>
+						<td>{{hospede.cpf}}</td>
+						<td>{{hospede.telefone}}</td>
+						<td>
+							<button type="button" class="btn btn-warning">Editar</button>
+							<button type="button" class="btn btn-danger">Deletar</button>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
-	<!-- Tabele with data of request WebService - End-->
 
 	<!-- Navigation Bar Footer - Begin -->
 	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
@@ -77,5 +88,11 @@
 		</div>
 	</div>
 	<!-- Navigation Bar Footer - End -->	
+
+	<script type="text/javascript">
+		function showDiv() {
+			document.getElementById('divResult').style.display = "inline";
+		}
+	</script>
 </body>
 </html>

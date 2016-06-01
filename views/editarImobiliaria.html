@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="myapp">
 <head>
-	<title>Consumo API</title>
+	<title>Editar H&oacute;spede</title>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 
@@ -33,40 +33,13 @@
       	<div class="collapse navbar-collapse" id="bar1">
       		<ul class="nav navbar-nav">
               <li><a href="../index.html">Home</a></li>
-              <li class="active"><a href="hospede.html">H&oacute;spedes</a></li>
-              <li><a href="imobiliaria.html">Imobiliarias</a></li>
+              <li><a href="hospede.html">H&oacute;spedes</a></li>
+              <li class="active"><a href="imobiliaria.html">Imobiliarias</a></li>
       		</ul>
     	</div>
     </nav> 
     <!-- Navigation Bar - End-->
 
-
-    <!-- Tabele with data of request WebService - Begin-->
-	<div ng-controller="hospedeController">
-	
-		<button type="button" class="btn btn-default" ng-click="list()">Verificar Hospedes</button>
-		<br><br>
-		<div class="container">
-			<table class="table">
-				<tr>
-					<th>Nome</th>
-					<th>CPF</th>
-					<th>Telefone</th>
-					<th>A&ccedil;&atilde;o</th>
-				</tr>
-				<tr ng-repeat="hospede in hospedes">
-					<td>{{hospede.nome}}</td>
-					<td>{{hospede.cpf}}</td>
-					<td>{{hospede.telefone}}</td>
-					<td>
-						<button type="button" class="btn btn-warning">Editar</button>
-						<button type="button" class="btn btn-danger">Deletar</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<!-- Tabele with data of request WebService - End-->
 
 	<!-- Navigation Bar Footer - Begin -->
 	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
