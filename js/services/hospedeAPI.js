@@ -16,8 +16,15 @@
 			list:_list
 		}
 
-		var _save = function(){
 
-		}
+
+		// var _delete = function(){
+		// 	return $http.delete('http://localhost:8080/FlatWS/hospede/deleteHospede' + id);
+		// };
+
+		// return{
+		// 	delete:_delete
+		// }
 	}
+
 })()
