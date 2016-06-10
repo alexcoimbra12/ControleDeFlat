@@ -1,11 +1,20 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" ng-app="myapp">
 <head>
 	<title>Cadatro de Hospedes</title>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 
+
 	<!-- JS -->
+	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../js/services/hospedeAPI.js"></script>
+	<script type="text/javascript" src="../js/controllers/hospedeController.js"></script>
+	<script type="text/javascript" src="../js/services/imobiliariaAPI.js"></script>
+	<script type="text/javascript" src="../js/controllers/imobiliariaController.js"></script>
+	<script type="text/javascript" src="../js/services/apartamentoAPI.js"></script>
+	<script type="text/javascript" src="../js/controllers/apartamentoController.js"></script>
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
@@ -39,23 +48,41 @@
 
 	<div class="container">
 		<div>
-			<div class="panel panel-info">
+			<div class="panel panel-info" ng-controller="hospedeController">
 	  			<div class="panel-heading" align="center">Cadastro de Novos Hospedes</div>
 	  			<div class="panel-body">
-	    			<form id="cadastroHospede">
+	    			<form id="cadastroHospede" ng-submit="save()">
 						<label>Nome</label><br>
-						<input type="text" id="nome" class="form-control"></input>
+						<input type="text" id="nome" class="form-control" ng-model="nome"></input>
 						<br>
 						<label>CPF</label><br>
-						<input type="text" id="cpf" class="form-control"></input>
+						<input type="text" id="cpf" class="form-control" ng-model="cpf"></input>
 						<br>
 						<label>Telefone</label><br>
-						<input type="text" id="telefone" class="form-control"></input>
+						<input type="text" id="telefone" class="form-control" ng-model="telefone"></input>
 						<br>
-						<label>Apartamento</label><br>
-						<input type="text" id="apto" class="form-control"></input>
+						<label>Selecione um Apartamento</label><br>
+						<div  ng-controller="apartamentoController">
+							<div ng-init="list()">
+								<select class="form-control" ng-model="apartamento.apartamento">
+									<option ng-repeat="apartamento in apartamentos" 
+										value="{{apartamento}}" >{{apartamento.numeroApto}}</option>
+								</select>
+  							</div>
+						</div>
 						<br>
-						<button type="button" class="btn btn-primary">Cadastrar</button>
+						<label>Selecione um Imobiliaria</label>
+						<div  ng-controller="imobiliariaController">
+							<div ng-init="list()">
+								<select class="form-control" ng-model="imobiliaria.imobiliaria">
+									<option ng-repeat="imobiliaria in imobiliarias" 
+										value="{{imobiliaria}}" >{{imobiliaria.nome}}</option>
+								</select>
+  							</div>
+						</div>
+
+						<br>
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
 					</form>
 	  			</div>
 			</div>

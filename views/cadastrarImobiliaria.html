@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html  ng-app="myapp">
 <head>
 	<title></title>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 
 	<!-- JS -->
+  <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="../js/app.js"></script>
+  <script type="text/javascript" src="../js/services/imobiliariaAPI.js"></script>
+  <script type="text/javascript" src="../js/controllers/imobiliariaController.js"></script>
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
@@ -36,27 +40,27 @@
   <!-- Navigation Bar - End-->
 
   <div class="container">
-    <div class="row">
-      <div class="panel panel-info">
+    <div>
+      <div class="panel panel-info" ng-controller="imobiliariaController">
           <div class="panel-heading" align="center">Cadastro de Novas Imobili&aacute;rias</div>
           <div class="panel-body">
-            <form>
+            <form id="cadastroImobiliaria" ng-submit="save()">
               <label>Nome</label><br>
-              <input type="text" id="nome" class="form-control"></input>
+              <input type="text" class="form-control" ng-model="nome"></input>
               <br>
               <label>Endere&ccedil;o</label><br>
-              <input type="text" id="endereco" class="form-control"></input>
+              <input type="text" class="form-control" ng-model="endereco"></input>
               <br>
               <label>Telefone para Contato</label><br>
-              <input type="text" id="telefone" class="form-control"></input>
+              <input type="text" class="form-control" ng-model="telContato"></input>
               <br>
               <label>Nome do Corretor</label><br>
-              <input type="text" id="nomeCorretor" class="form-control"></input>
+              <input type="text" class="form-control" ng-model="nomeCorretor"></input>
               <br>
               <label>Numero do Creci</label><br>
-              <input type="text" id="numCreci" class="form-control"></input>
+              <input type="text" class="form-control" ng-model="numCreci"></input>
               <br><br>
-              <button type="button" class="btn btn-primary">Cadastrar</button>
+              <button type="submit" class="btn btn-primary">Cadastrar</button>
             </form>
           </div>
       </div>

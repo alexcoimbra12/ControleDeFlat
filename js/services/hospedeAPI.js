@@ -1,30 +1,30 @@
 (function () {
 	'use strict'
 
-	angular
-	.module('myapp')
-
-	.factory('hospedeAPI', hospedeAPI);
-
-	hospedeAPI.$inject = [$http];
-	
-	function hospedeAPI($http) {
+	angular.module('myapp').factory('hospedeAPI', 	function hospedeAPI($http) {
+		
 		var _list = function(){
-			return $http.get('http://localhost:8080/FlatWS/hospede/getHospedes');
+			return $http.get('http://localhost:8080/FlatWS/hospede/api/get/')
 		};
+
+		var _save = function(data){
+			return $http.post('http://localhost:8080/FlatWS/hospede/api/post/', data);
+		};
+
+
+		var _delete = function(id){
+			return $http.delete('http://localhost:8080/FlatWS/hospede/api/delete/' + id);
+		};
+
 		return {
-			list:_list
+			save:_save,
+			list:_list,
+			delete:_delete
 		}
 
-
-
-		// var _delete = function(){
-		// 	return $http.delete('http://localhost:8080/FlatWS/hospede/deleteHospede' + id);
-		// };
-
-		// return{
-		// 	delete:_delete
-		// }
 	}
+);
+
+	
 
 })()
