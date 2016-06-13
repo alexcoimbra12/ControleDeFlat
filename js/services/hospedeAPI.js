@@ -3,8 +3,8 @@
 
 	angular.module('myapp').factory('hospedeAPI', 	function hospedeAPI($http) {
 		
-		var _list = function(){
-			return $http.get('http://localhost:8080/FlatWS/hospede/api/get/')
+		var _listName = function(name){
+			return $http.get('http://localhost:8080/FlatWS/hospede/api/get/' + name)
 		};
 
 		var _save = function(data){
@@ -18,13 +18,10 @@
 
 		return {
 			save:_save,
-			list:_list,
-			delete:_delete
+			delete:_delete,
+			listName:_listName
 		}
 
 	}
 );
-
-	
-
 })()

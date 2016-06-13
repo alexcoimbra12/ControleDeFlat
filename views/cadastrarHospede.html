@@ -4,6 +4,7 @@
 	<title>Cadatro de Hospedes</title>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../bower_components/sweetalert/dist/sweetalert.css">
 
 
 	<!-- JS -->
@@ -17,6 +18,7 @@
 	<script type="text/javascript" src="../js/controllers/apartamentoController.js"></script>
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -45,26 +47,27 @@
     </nav> 
 
     <!-- Navigation Bar - End -->
+	
 
 	<div class="container">
 		<div>
 			<div class="panel panel-info" ng-controller="hospedeController">
 	  			<div class="panel-heading" align="center">Cadastro de Novos Hospedes</div>
 	  			<div class="panel-body">
-	    			<form id="cadastroHospede" ng-submit="save()">
+	    			<form name="hospedeForm" ng-submit="save()">
 						<label>Nome</label><br>
-						<input type="text" id="nome" class="form-control" ng-model="nome"></input>
+						<input type="text" id="nome" class="form-control" ng-model="hospede.nome" required></input>
 						<br>
 						<label>CPF</label><br>
-						<input type="text" id="cpf" class="form-control" ng-model="cpf"></input>
+						<input type="text" id="cpf" class="form-control" ng-model="hospede.cpf" required></input>
 						<br>
 						<label>Telefone</label><br>
-						<input type="text" id="telefone" class="form-control" ng-model="telefone"></input>
+						<input type="text" id="telefone" class="form-control" ng-model="hospede.telefone" required></input>
 						<br>
 						<label>Selecione um Apartamento</label><br>
 						<div  ng-controller="apartamentoController">
 							<div ng-init="list()">
-								<select class="form-control" ng-model="apartamento.apartamento">
+								<select class="form-control" ng-model="hospede.apartamento.apartamento" required>
 									<option ng-repeat="apartamento in apartamentos" 
 										value="{{apartamento}}" >{{apartamento.numeroApto}}</option>
 								</select>
@@ -74,13 +77,12 @@
 						<label>Selecione um Imobiliaria</label>
 						<div  ng-controller="imobiliariaController">
 							<div ng-init="list()">
-								<select class="form-control" ng-model="imobiliaria.imobiliaria">
+								<select class="form-control" ng-model="hospede.imobiliaria.imobiliaria" required>
 									<option ng-repeat="imobiliaria in imobiliarias" 
-										value="{{imobiliaria}}" >{{imobiliaria.nome}}</option>
+										value="{{imobiliaria}}">{{imobiliaria.nome}}</option>
 								</select>
   							</div>
 						</div>
-
 						<br>
 						<button type="submit" class="btn btn-primary">Cadastrar</button>
 					</form>
