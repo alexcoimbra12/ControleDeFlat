@@ -2,6 +2,6 @@
 		'use strict';
 
 		angular
-		.module('myapp',[]);
+		.module('myapp',['angularUtils.directives.dirPagination']);
 
 })()

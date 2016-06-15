@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="myapp">
+<meta charset="utf-8"/>
 <head>
 	<title>Editar H&oacute;spede</title>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../bower_components/sweetalert/dist/sweetalert.css">
 
 	<!-- JS -->
 	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../js/app.js"></script>
-	<script type="text/javascript" src="../js/services/hospedeAPI.js"></script>
-	<script type="text/javascript" src="../js/controllers/hospedeController.js"></script>
+	<script type="text/javascript" src="../js/dirPagination.js"></script>
+	<script type="text/javascript" src="../js/services/imobiliariaAPI.js"></script>
+	<script type="text/javascript" src="../js/controllers/imobiliariaController.js"></script>
+	<script type="text/javascript" src="../js/services/imobiliariaAPI.js"></script>
+	<script type="text/javascript" src="../js/controllers/imobiliariaController.js"></script>
+	<script type="text/javascript" src="../js/services/apartamentoAPI.js"></script>
+	<script type="text/javascript" src="../js/controllers/apartamentoController.js"></script>
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	
@@ -33,13 +41,71 @@
       	<div class="collapse navbar-collapse" id="bar1">
       		<ul class="nav navbar-nav">
               <li><a href="../index.html">Home</a></li>
-              <li class="active"><a href="hospede.html">H&oacute;spedes</a></li>
+              <li class="active"><a href="imobiliaria.html">H&oacute;spedes</a></li>
               <li><a href="imobiliaria.html">Imobiliarias</a></li>
       		</ul>
     	</div>
     </nav> 
     <!-- Navigation Bar - End-->
 
+   	<div ng-controller="imobiliariaController">
+   		<!-- Search input - Begin -->
+	   	<div class="row" >
+			<div class="container">
+			  	<div class="col-lg-12">
+			       	<div class="input-group">
+			      		<input type="text" class="form-control" placeholder="Digite o nome do H&oacute;spede" ng-model="name">
+			      		<span class="input-group-btn">
+			        		<button class="btn btn-default" type="button" ng-click="listName()">Buscar</button>
+			     		</span>
+			    	</div>
+			  	</div>
+			</div>
+		</div>
+		<!-- Search input - End -->
+
+
+		<div  class="col-lg-12" align="center">
+				<div ng-show="result">
+					<div class="container" id="divResult">
+							<form ng-submit="edit(imobiliaria)" ng-repeat="imobiliaria in imobiliarias"> 
+								<label>Nome</label><br>
+								<input type="text" class="form-control" ng-model="imobiliaria.nome" required></input>
+								<br>
+								<label>CPF</label><br>
+								<input type="text" id="cpf" class="form-control" ng-model="imobiliaria.cpf" required></input>
+								<br>
+								<label>Telefone</label><br>
+								<input type="text" id="telefone" class="form-control" ng-model="imobiliaria.telefone" required></input>
+								<br>
+								<label>Apartamento Atual {{imobiliaria.apartamento.numeroApto}}</label><br>
+								<div  ng-controller="apartamentoController">
+									<div ng-init="list()">
+										<select class="form-control" ng-model="imobiliaria.apartamento.apartamento" required>
+											<option value="{{imobiliaria.apartamento}}" selected>{{imobiliaria.apartamento.numeroApto}}</option>
+											<option ng-repeat="apartamento in apartamentos" value="{{apartamento}}" >{{apartamento.numeroApto}}</option>
+										</select>
+		  							</div>
+								</div>	
+								<br>
+								<label>Imobiliaria Atual {{imobiliaria.imobiliaria.nome}}</label>
+								<div  ng-controller="imobiliariaController">
+									<div ng-init="listName()">
+										<select class="form-control" ng-model="imobiliaria.imobiliaria.imobiliaria" required>
+											<option value="{{imobiliaria.imobiliaria}}" selected>{{imobiliaria.imobiliaria.nome}}</option>
+											<option ng-repeat="imobiliaria in imobiliarias" 
+												value="{{imobiliaria}}">{{imobiliaria.nome}}</option>
+										</select>
+		  							</div>
+								</div>
+								<br>
+								<button type="submit" class="btn btn-warning">Atualizar</button>
+							</form>
+
+					</div>
+				</div>
+			</div>
+	</div>
 
 	<!-- Navigation Bar Footer - Begin -->
 	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">

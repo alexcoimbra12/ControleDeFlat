@@ -11,8 +11,8 @@
 	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../js/dirPagination.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-confirmation.min.js"></script>
 	<script type="text/javascript" src="../js/services/hospedeAPI.js"></script>
 	<script type="text/javascript" src="../js/controllers/hospedeController.js"></script>	
 	<script type="text/javascript" src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
@@ -51,41 +51,39 @@
 			<div class="container">
 			  	<div class="col-lg-12">
 			       	<div class="input-group">
-			      		<input type="text" class="form-control" placeholder="Digite o nome do H&oacute;spede" ng-model="name">
-			      		<span class="input-group-btn">
-			        		<button class="btn btn-default" type="button" ng-click="listName()">Buscar</button>
-			     		</span>
-			    	</div>
+			      		<label>Procurar</label>
+			      		<input type="text" class="form-control" placeholder="Procurar..." ng-model="procurar">
+			      	</div>
 			  	</div>
 			</div>
 		</div>
 		<!-- Search input - End -->
 
+		<br>
 		<div  class="col-lg-12" align="center" ng-init="listName()">
-
-			<div ng-if="result">
+			<div ng-show="result">
 				<div class="container" id="divResult">
 						<table class="table table-hover">
 							<tr>
-								<th>Nome</th>
-								<th>CPF</th>
-								<th>Telefone</th>
-								<th>Apartamento</th>
-								<th>Imobiliaria</th>
+								<th ng-click="ordenar('nome')">Nome</th>
+								<th ng-click="ordenar('cpf')">CPF</th>
+								<th ng-click="ordenar('telefone')">Telefone</th>
+								<th ng-click="ordenar('apartamento')">Apartamento</th>
+								<th ng-click="ordenar('imobiliaria')">Imobiliaria</th>
 								<th>A&ccedil;&atilde;o</th>
 							</tr>
-							<tr ng-repeat="hospede in hospedes">
+							<tr dir-paginate="hospede in hospedes|filter:procurar|orderBy:sortKey:reverse|itemsPerPage:5">
 								<td>{{hospede.nome}}</td>
 								<td>{{hospede.cpf}}</td>
 								<td>{{hospede.telefone}}</td>
 								<td>{{hospede.apartamento.numeroApto}}</td>
 								<td>{{hospede.imobiliaria.nome}}</td>
 								<td>
-									<button type="button" class="btn btn-warning" value="{{hospede}}">Editar</button>
 									<button type="button" class="btn btn-danger" value="{{hospede.id}}" ng-click="delete(hospede.id)">Deletar</button>
 								</td>
 							</tr>
 						</table>
+						<dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>
 				</div>
 			</div>
 		</div>

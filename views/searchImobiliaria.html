@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="myapp">
+<meta charset="utf-8"/>
 <head>
 	<title>Consumo API</title>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../bower_components/sweetalert/dist/sweetalert.css">
 
 	<!-- JS -->
 	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../js/app.js"></script>
+	<script type="text/javascript" src="../js/dirPagination.js"></script>
 	<script type="text/javascript" src="../js/services/imobiliariaAPI.js"></script>
 	<script type="text/javascript" src="../js/controllers/imobiliariaController.js"></script>
 	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	
@@ -33,7 +37,7 @@
       	<div class="collapse navbar-collapse" id="bar1">
       		<ul class="nav navbar-nav">
               <li><a href="../index.html">Home</a></li>
-              <li><a href="hospede.html">H&oacute;spedes</a></li>
+              <li><a href="imobiliaria.html">H&oacute;spedes</a></li>
               <li class="active"><a href="imobiliaria.html">Imobiliarias</a></li>
       		</ul>
     	</div>
@@ -46,39 +50,39 @@
 			<div class="container">
 			  	<div class="col-lg-12">
 			       	<div class="input-group">
-			      		<input type="text" class="form-control" placeholder="Digite o nome da Imobiliaria">
-			      		<span class="input-group-btn">
-			        		<button class="btn btn-default" type="button" ng-click="list()" onclick="showDiv();">Buscar</button>
-			     		</span>
+			      		<label>Procurar</label>
+			      		<input type="text" class="form-control" placeholder="Procurar..." ng-model="procurar">
 			    	</div>
 			  	</div>
 			</div>
 		</div>
-	<!-- Search input - Begin -->
-
-		<div  class="col-lg-12" align="center">
-			<div class="container" id="divResult" style="display: none;">
-				<table class="table">
-					<tr>
-						<th>Nome</th>
-						<th>Endere&ccedil;o</th>
-						<th>Nome Corretor</th>
-						<th>Numero Creci</th>
-						<th>Telefone para Contato</th>
-						<th>A&ccedil;&atilde;o</th>
-					</tr>
-					<tr ng-repeat="imobiliaria in imobiliarias">
-						<td>{{data.nome}}</td>
-						<td>{{imobiliaria.endereco}}</td>
-						<td>{{imobiliaria.nomeCorretor}}</td>
-						<td>{{imobiliaria.numCreci}}</td>
-						<td>{{imobiliaria.telContato}}</td>
-						<td>
-							<button type="button" class="btn btn-warning">Editar</button>
-							<button type="button" class="btn btn-danger">Deletar</button>
-						</td>
-					</tr>
-				</table>
+	<!-- Search input - End -->
+		<br>
+		<div  class="col-lg-12" align="center" ng-init="listName()">
+			<div ng-show="result">
+				<div class="container" id="divResult">
+					<table class="table table-hover">
+						<tr>
+							<th>Nome</th>
+							<th>Endere&ccedil;o</th>
+							<th>Nome Corretor</th>
+							<th>Numero Creci</th>
+							<th>Telefone para Contato</th>
+							<th>A&ccedil;&atilde;o</th>
+						</tr>
+						<tr dir-paginate="imobiliaria in imobiliarias|filter:procurar|orderBy:sortKey:reverse|itemsPerPage:5">
+							<td>{{imobiliaria.nome}}</td>
+							<td>{{imobiliaria.endereco}}</td>
+							<td>{{imobiliaria.nomeCorretor}}</td>
+							<td>{{imobiliaria.numCreci}}</td>
+							<td>{{imobiliaria.telContato}}</td>
+							<td>
+								<button type="button" class="btn btn-danger" value="{{imobiliaria.id}}" ng-click="delete(imobiliaria.id)">Deletar</button>
+							</td>
+						</tr>
+					</table>
+					<dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -91,11 +95,5 @@
 		</div>
 	</div>
 	<!-- Navigation Bar Footer - End -->	
-
-	<script type="text/javascript">
-		function showDiv() {
-			document.getElementById('divResult').style.display = "inline";
-		}
-	</script>
 </body>
 </html>

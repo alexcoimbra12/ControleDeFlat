@@ -3,6 +3,11 @@
 
 	angular.module('myapp').controller('hospedeController', function hospedeController(hospedeAPI, $scope) {
 		
+		$scope.ordenar = function(keyname){
+	        $scope.sortKey = keyname;
+	        $scope.reverse = !$scope.reverse;
+    	};
+
 		$scope.hospedes = [];
 
 		$scope.hospede = {
@@ -17,14 +22,24 @@
 				imobiliaria: null
 			}
 		}
+
 		$scope.name = "";
 		$scope.result = true;
-
+		$scope.id = "";
 		$scope.listName = function(){
 			
 			hospedeAPI.listName($scope.name).success(function(data){
-				$scope.hospedes = data;
-
+				if(data == 0){
+					if($scope.name == ""){
+						swal("Não encontramos Hospedes cadastre um e tente novamente")
+					}else {
+						swal("Não encontramos Hospedes com o nome "+ $scope.name + " tente outro")
+					}
+					$scope.result = false;
+				}else{
+					$scope.result = true;
+					$scope.hospedes = data;
+				}
 			});
 		}
 
@@ -66,6 +81,23 @@
 					});
 						}, 1000 );
 				});
+			});
+		}
+
+		$scope.edit = function(hospede){
+
+			var data1 = {
+				"id": hospede.id,
+				"nome": hospede.nome,
+	            "cpf": hospede.cpf,
+	            "telefone": hospede.telefone,
+	            "apartamento": JSON.parse(hospede.apartamento.apartamento),
+	            "imobiliaria": JSON.parse(hospede.imobiliaria.imobiliaria)
+			}
+
+			hospedeAPI.edit(data1).success(function(data){
+				swal("Muito Bem!", "Hospede Atualizado com Sucesso!", "success");
+
 			});
 		}
 		
